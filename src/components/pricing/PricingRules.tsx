@@ -26,13 +26,13 @@ export function PricingRules() {
       </header>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[620px] text-left">
+        <table className="w-full min-w-[520px] text-left">
           <thead>
             <tr className="text-[11px] text-muted-foreground">
               <th className="px-4 py-2.5 font-medium">Name / Target</th>
               <th className="px-3 py-2.5 font-medium">Scope</th>
               <th className="px-3 py-2.5 font-medium">Value</th>
-              <th className="px-3 py-2.5 font-medium">Schedule</th>
+              <th className="hidden px-3 py-2.5 font-medium 2xl:table-cell">Schedule</th>
               <th className="px-3 py-2.5 font-medium">Impact/wk</th>
               <th className="px-4 py-2.5 font-medium">Active</th>
             </tr>
@@ -55,7 +55,7 @@ export function PricingRules() {
                   </span>
                 </td>
                 <td className="px-3 py-3 text-xs">{rule.value}</td>
-                <td className="px-3 py-3 text-[11px] text-muted-foreground">{rule.schedule}</td>
+                <td className="hidden px-3 py-3 text-[11px] text-muted-foreground 2xl:table-cell">{rule.schedule}</td>
                 <td className="px-3 py-3">
                   <div className="text-xs font-medium">{rule.impact}</div>
                   <div className="text-[10px] text-muted-foreground">per week</div>

@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "API keys — Instance Configuration Dashboard" },
       {
         property: "og:description",
-        content: "Manage publishable and secret API keys for your instance in one place.",
+        content: "Manage publishable and secret API keys for your instance, copy environment variables, and rotate credentials safely.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

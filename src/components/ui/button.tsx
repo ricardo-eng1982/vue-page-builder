@@ -16,6 +16,14 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        soft: "border border-border bg-background text-foreground shadow-xs hover:bg-muted",
+        panel:
+          "border border-panel-border bg-panel-code text-panel-foreground hover:bg-panel-border/40",
+        panelGhost: "text-panel-muted hover:text-panel-foreground",
+        sidebar:
+          "w-full justify-start font-normal text-muted-foreground hover:bg-muted hover:text-foreground",
+        sidebarActive: "w-full justify-start font-medium bg-muted text-foreground",
+
       },
       size: {
         default: "h-9 px-4 py-2",

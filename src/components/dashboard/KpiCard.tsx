@@ -42,7 +42,14 @@ export function KpiCard({ label, value, delta, up, hint }: Props) {
           {delta}
         </span>
       </div>
-      <p className="mt-4 text-3xl font-semibold tracking-tight text-foreground">{value}</p>
+      <p
+        className={cn(
+          "mt-4 text-3xl font-semibold tracking-tight",
+          up ? "text-eng-foreground" : "text-foreground",
+        )}
+      >
+        {value}
+      </p>
       <p
         className={cn(
           "mt-1 text-[11px]",

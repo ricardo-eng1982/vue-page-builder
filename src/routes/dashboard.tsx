@@ -34,7 +34,7 @@ const RANGES = ["Hoje", "7 dias", "30 dias", "Este mês", "Mês passado"];
 
 function DashboardPage() {
   return (
-    <div className="flex min-h-screen w-full bg-eng-surface text-foreground">
+    <div className="flex min-h-screen w-full text-foreground [background:linear-gradient(135deg,var(--eng-surface)_0%,color-mix(in_oklab,var(--eng-soft)_70%,white)_55%,color-mix(in_oklab,var(--eng)_12%,white)_100%)]">
       <DashboardSidebar />
 
       <main className="min-w-0 flex-1">

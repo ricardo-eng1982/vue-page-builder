@@ -13,7 +13,14 @@ export function KpiCard({ label, value, delta, up, hint }: Props) {
   const Icon = up ? ArrowUpRight : ArrowDownRight;
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-4 shadow-eng transition-shadow hover:shadow-lg">
+    <div
+      className={cn(
+        "rounded-2xl border p-4 shadow-eng transition-shadow hover:shadow-lg",
+        up
+          ? "border-transparent bg-[linear-gradient(135deg,var(--eng)_0%,color-mix(in_oklab,var(--eng)_55%,var(--eng-ink))_100%)] text-eng-foreground"
+          : "border-border bg-card",
+      )}
+    >
       <div className="flex items-start justify-between gap-2">
         <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
           {label}

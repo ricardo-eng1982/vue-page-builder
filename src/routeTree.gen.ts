@@ -16,6 +16,7 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as AdminAtivosRouteImport } from './routes/admin.ativos'
+import { Route as AdminFipeRouteImport } from './routes/admin.fipe'
 import { Route as AdminFlowsRouteImport } from './routes/admin.flows'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 
@@ -54,6 +55,11 @@ const AdminAtivosRoute = AdminAtivosRouteImport.update({
   path: '/ativos',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminFipeRoute = AdminFipeRouteImport.update({
+  id: '/fipe',
+  path: '/fipe',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminFlowsRoute = AdminFlowsRouteImport.update({
   id: '/flows',
   path: '/flows',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
+  '/admin/fipe': typeof AdminFipeRoute
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
+  '/admin/fipe': typeof AdminFipeRoute
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin': typeof AdminIndexRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
+  '/admin/fipe': typeof AdminFipeRoute
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/admin/analytics'
     | '/admin/ativos'
+    | '/admin/fipe'
     | '/admin/flows'
     | '/admin/usuarios'
     | '/admin/'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/admin/analytics'
     | '/admin/ativos'
+    | '/admin/fipe'
     | '/admin/flows'
     | '/admin/usuarios'
     | '/admin'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/admin/analytics'
     | '/admin/ativos'
+    | '/admin/fipe'
     | '/admin/flows'
     | '/admin/usuarios'
     | '/admin/'
@@ -191,6 +203,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAtivosRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/fipe': {
+      id: '/admin/fipe'
+      path: '/fipe'
+      fullPath: '/admin/fipe'
+      preLoaderRoute: typeof AdminFipeRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/flows': {
       id: '/admin/flows'
       path: '/flows'
@@ -211,6 +230,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminAtivosRoute: typeof AdminAtivosRoute
+  AdminFipeRoute: typeof AdminFipeRoute
   AdminFlowsRoute: typeof AdminFlowsRoute
   AdminUsuariosRoute: typeof AdminUsuariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -219,6 +239,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminAtivosRoute: AdminAtivosRoute,
+  AdminFipeRoute: AdminFipeRoute,
   AdminFlowsRoute: AdminFlowsRoute,
   AdminUsuariosRoute: AdminUsuariosRoute,
   AdminIndexRoute: AdminIndexRoute,

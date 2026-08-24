@@ -17,6 +17,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as AdminAtivosRouteImport } from './routes/admin.ativos'
 import { Route as AdminConsultasRouteImport } from './routes/admin.consultas'
+import { Route as AdminDevelopmentRouteImport } from './routes/admin.development'
 import { Route as AdminEquipeRouteImport } from './routes/admin.equipe'
 import { Route as AdminFinanceiroRouteImport } from './routes/admin.financeiro'
 import { Route as AdminFipeRouteImport } from './routes/admin.fipe'
@@ -64,6 +65,11 @@ const AdminConsultasRoute = AdminConsultasRouteImport.update({
   path: '/consultas',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminDevelopmentRoute = AdminDevelopmentRouteImport.update({
+  id: '/development',
+  path: '/development',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminEquipeRoute = AdminEquipeRouteImport.update({
   id: '/equipe',
   path: '/equipe',
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
   '/admin/consultas': typeof AdminConsultasRoute
+  '/admin/development': typeof AdminDevelopmentRoute
   '/admin/equipe': typeof AdminEquipeRoute
   '/admin/financeiro': typeof AdminFinanceiroRoute
   '/admin/fipe': typeof AdminFipeRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
   '/admin/consultas': typeof AdminConsultasRoute
+  '/admin/development': typeof AdminDevelopmentRoute
   '/admin/equipe': typeof AdminEquipeRoute
   '/admin/financeiro': typeof AdminFinanceiroRoute
   '/admin/fipe': typeof AdminFipeRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
   '/admin/consultas': typeof AdminConsultasRoute
+  '/admin/development': typeof AdminDevelopmentRoute
   '/admin/equipe': typeof AdminEquipeRoute
   '/admin/financeiro': typeof AdminFinanceiroRoute
   '/admin/fipe': typeof AdminFipeRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/ativos'
     | '/admin/consultas'
+    | '/admin/development'
     | '/admin/equipe'
     | '/admin/financeiro'
     | '/admin/fipe'
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/ativos'
     | '/admin/consultas'
+    | '/admin/development'
     | '/admin/equipe'
     | '/admin/financeiro'
     | '/admin/fipe'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/ativos'
     | '/admin/consultas'
+    | '/admin/development'
     | '/admin/equipe'
     | '/admin/financeiro'
     | '/admin/fipe'
@@ -258,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminConsultasRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/development': {
+      id: '/admin/development'
+      path: '/development'
+      fullPath: '/admin/development'
+      preLoaderRoute: typeof AdminDevelopmentRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/equipe': {
       id: '/admin/equipe'
       path: '/equipe'
@@ -307,6 +326,7 @@ interface AdminRouteChildren {
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminAtivosRoute: typeof AdminAtivosRoute
   AdminConsultasRoute: typeof AdminConsultasRoute
+  AdminDevelopmentRoute: typeof AdminDevelopmentRoute
   AdminEquipeRoute: typeof AdminEquipeRoute
   AdminFinanceiroRoute: typeof AdminFinanceiroRoute
   AdminFipeRoute: typeof AdminFipeRoute
@@ -320,6 +340,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminAtivosRoute: AdminAtivosRoute,
   AdminConsultasRoute: AdminConsultasRoute,
+  AdminDevelopmentRoute: AdminDevelopmentRoute,
   AdminEquipeRoute: AdminEquipeRoute,
   AdminFinanceiroRoute: AdminFinanceiroRoute,
   AdminFipeRoute: AdminFipeRoute,

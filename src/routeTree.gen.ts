@@ -13,6 +13,18 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as AdminAtivosRouteImport } from './routes/admin.ativos'
+import { Route as AdminAuditRouteImport } from './routes/admin.audit'
+import { Route as AdminConsultasRouteImport } from './routes/admin.consultas'
+import { Route as AdminDevelopmentRouteImport } from './routes/admin.development'
+import { Route as AdminEquipeRouteImport } from './routes/admin.equipe'
+import { Route as AdminFinanceiroRouteImport } from './routes/admin.financeiro'
+import { Route as AdminFipeRouteImport } from './routes/admin.fipe'
+import { Route as AdminFlowsRouteImport } from './routes/admin.flows'
+import { Route as AdminTiposRouteImport } from './routes/admin.tipos'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,37 +46,180 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAtivosRoute = AdminAtivosRouteImport.update({
+  id: '/ativos',
+  path: '/ativos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConsultasRoute = AdminConsultasRouteImport.update({
+  id: '/consultas',
+  path: '/consultas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDevelopmentRoute = AdminDevelopmentRouteImport.update({
+  id: '/development',
+  path: '/development',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEquipeRoute = AdminEquipeRouteImport.update({
+  id: '/equipe',
+  path: '/equipe',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFinanceiroRoute = AdminFinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFipeRoute = AdminFipeRouteImport.update({
+  id: '/fipe',
+  path: '/fipe',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFlowsRoute = AdminFlowsRouteImport.update({
+  id: '/flows',
+  path: '/flows',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTiposRoute = AdminTiposRouteImport.update({
+  id: '/tipos',
+  path: '/tipos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/ativos': typeof AdminAtivosRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/consultas': typeof AdminConsultasRoute
+  '/admin/development': typeof AdminDevelopmentRoute
+  '/admin/equipe': typeof AdminEquipeRoute
+  '/admin/financeiro': typeof AdminFinanceiroRoute
+  '/admin/fipe': typeof AdminFipeRoute
+  '/admin/flows': typeof AdminFlowsRoute
+  '/admin/tipos': typeof AdminTiposRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/ativos': typeof AdminAtivosRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/consultas': typeof AdminConsultasRoute
+  '/admin/development': typeof AdminDevelopmentRoute
+  '/admin/equipe': typeof AdminEquipeRoute
+  '/admin/financeiro': typeof AdminFinanceiroRoute
+  '/admin/fipe': typeof AdminFipeRoute
+  '/admin/flows': typeof AdminFlowsRoute
+  '/admin/tipos': typeof AdminTiposRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/ativos': typeof AdminAtivosRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/consultas': typeof AdminConsultasRoute
+  '/admin/development': typeof AdminDevelopmentRoute
+  '/admin/equipe': typeof AdminEquipeRoute
+  '/admin/financeiro': typeof AdminFinanceiroRoute
+  '/admin/fipe': typeof AdminFipeRoute
+  '/admin/flows': typeof AdminFlowsRoute
+  '/admin/tipos': typeof AdminTiposRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/dashboard' | '/pricing'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/dashboard'
+    | '/pricing'
+    | '/admin/analytics'
+    | '/admin/ativos'
+    | '/admin/audit'
+    | '/admin/consultas'
+    | '/admin/development'
+    | '/admin/equipe'
+    | '/admin/financeiro'
+    | '/admin/fipe'
+    | '/admin/flows'
+    | '/admin/tipos'
+    | '/admin/usuarios'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/dashboard' | '/pricing'
-  id: '__root__' | '/' | '/admin' | '/dashboard' | '/pricing'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/pricing'
+    | '/admin/analytics'
+    | '/admin/ativos'
+    | '/admin/audit'
+    | '/admin/consultas'
+    | '/admin/development'
+    | '/admin/equipe'
+    | '/admin/financeiro'
+    | '/admin/fipe'
+    | '/admin/flows'
+    | '/admin/tipos'
+    | '/admin/usuarios'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/dashboard'
+    | '/pricing'
+    | '/admin/analytics'
+    | '/admin/ativos'
+    | '/admin/audit'
+    | '/admin/consultas'
+    | '/admin/development'
+    | '/admin/equipe'
+    | '/admin/financeiro'
+    | '/admin/fipe'
+    | '/admin/flows'
+    | '/admin/tipos'
+    | '/admin/usuarios'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   DashboardRoute: typeof DashboardRoute
   PricingRoute: typeof PricingRoute
 }
@@ -99,12 +254,128 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/ativos': {
+      id: '/admin/ativos'
+      path: '/ativos'
+      fullPath: '/admin/ativos'
+      preLoaderRoute: typeof AdminAtivosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/audit': {
+      id: '/admin/audit'
+      path: '/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/consultas': {
+      id: '/admin/consultas'
+      path: '/consultas'
+      fullPath: '/admin/consultas'
+      preLoaderRoute: typeof AdminConsultasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/development': {
+      id: '/admin/development'
+      path: '/development'
+      fullPath: '/admin/development'
+      preLoaderRoute: typeof AdminDevelopmentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/equipe': {
+      id: '/admin/equipe'
+      path: '/equipe'
+      fullPath: '/admin/equipe'
+      preLoaderRoute: typeof AdminEquipeRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/financeiro': {
+      id: '/admin/financeiro'
+      path: '/financeiro'
+      fullPath: '/admin/financeiro'
+      preLoaderRoute: typeof AdminFinanceiroRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/fipe': {
+      id: '/admin/fipe'
+      path: '/fipe'
+      fullPath: '/admin/fipe'
+      preLoaderRoute: typeof AdminFipeRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/flows': {
+      id: '/admin/flows'
+      path: '/flows'
+      fullPath: '/admin/flows'
+      preLoaderRoute: typeof AdminFlowsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/tipos': {
+      id: '/admin/tipos'
+      path: '/tipos'
+      fullPath: '/admin/tipos'
+      preLoaderRoute: typeof AdminTiposRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminAtivosRoute: typeof AdminAtivosRoute
+  AdminAuditRoute: typeof AdminAuditRoute
+  AdminConsultasRoute: typeof AdminConsultasRoute
+  AdminDevelopmentRoute: typeof AdminDevelopmentRoute
+  AdminEquipeRoute: typeof AdminEquipeRoute
+  AdminFinanceiroRoute: typeof AdminFinanceiroRoute
+  AdminFipeRoute: typeof AdminFipeRoute
+  AdminFlowsRoute: typeof AdminFlowsRoute
+  AdminTiposRoute: typeof AdminTiposRoute
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminAtivosRoute: AdminAtivosRoute,
+  AdminAuditRoute: AdminAuditRoute,
+  AdminConsultasRoute: AdminConsultasRoute,
+  AdminDevelopmentRoute: AdminDevelopmentRoute,
+  AdminEquipeRoute: AdminEquipeRoute,
+  AdminFinanceiroRoute: AdminFinanceiroRoute,
+  AdminFipeRoute: AdminFipeRoute,
+  AdminFlowsRoute: AdminFlowsRoute,
+  AdminTiposRoute: AdminTiposRoute,
+  AdminUsuariosRoute: AdminUsuariosRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   DashboardRoute: DashboardRoute,
   PricingRoute: PricingRoute,
 }

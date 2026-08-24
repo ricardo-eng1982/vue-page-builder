@@ -19,6 +19,7 @@ import { Route as AdminAtivosRouteImport } from './routes/admin.ativos'
 import { Route as AdminConsultasRouteImport } from './routes/admin.consultas'
 import { Route as AdminFipeRouteImport } from './routes/admin.fipe'
 import { Route as AdminFlowsRouteImport } from './routes/admin.flows'
+import { Route as AdminTiposRouteImport } from './routes/admin.tipos'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +72,11 @@ const AdminFlowsRoute = AdminFlowsRouteImport.update({
   path: '/flows',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminTiposRoute = AdminTiposRouteImport.update({
+  id: '/tipos',
+  path: '/tipos',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
   id: '/usuarios',
   path: '/usuarios',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/admin/consultas': typeof AdminConsultasRoute
   '/admin/fipe': typeof AdminFipeRoute
   '/admin/flows': typeof AdminFlowsRoute
+  '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/admin/consultas': typeof AdminConsultasRoute
   '/admin/fipe': typeof AdminFipeRoute
   '/admin/flows': typeof AdminFlowsRoute
+  '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/admin/consultas': typeof AdminConsultasRoute
   '/admin/fipe': typeof AdminFipeRoute
   '/admin/flows': typeof AdminFlowsRoute
+  '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/admin/consultas'
     | '/admin/fipe'
     | '/admin/flows'
+    | '/admin/tipos'
     | '/admin/usuarios'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/admin/consultas'
     | '/admin/fipe'
     | '/admin/flows'
+    | '/admin/tipos'
     | '/admin/usuarios'
     | '/admin'
   id:
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/admin/consultas'
     | '/admin/fipe'
     | '/admin/flows'
+    | '/admin/tipos'
     | '/admin/usuarios'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -236,6 +248,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminFlowsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/tipos': {
+      id: '/admin/tipos'
+      path: '/tipos'
+      fullPath: '/admin/tipos'
+      preLoaderRoute: typeof AdminTiposRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/usuarios': {
       id: '/admin/usuarios'
       path: '/usuarios'
@@ -252,6 +271,7 @@ interface AdminRouteChildren {
   AdminConsultasRoute: typeof AdminConsultasRoute
   AdminFipeRoute: typeof AdminFipeRoute
   AdminFlowsRoute: typeof AdminFlowsRoute
+  AdminTiposRoute: typeof AdminTiposRoute
   AdminUsuariosRoute: typeof AdminUsuariosRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -262,6 +282,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminConsultasRoute: AdminConsultasRoute,
   AdminFipeRoute: AdminFipeRoute,
   AdminFlowsRoute: AdminFlowsRoute,
+  AdminTiposRoute: AdminTiposRoute,
   AdminUsuariosRoute: AdminUsuariosRoute,
   AdminIndexRoute: AdminIndexRoute,
 }

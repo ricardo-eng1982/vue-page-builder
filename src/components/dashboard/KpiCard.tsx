@@ -17,7 +17,7 @@ export function KpiCard({ label, value, delta, up, hint }: Props) {
       className={cn(
         "rounded-2xl border p-4 shadow-eng transition-shadow hover:shadow-lg",
         up
-          ? "border-transparent bg-[linear-gradient(135deg,var(--eng)_0%,color-mix(in_oklab,var(--eng)_55%,var(--eng-ink))_100%)] text-eng-foreground"
+          ? "border-transparent bg-[linear-gradient(135deg,var(--eng)_0%,color-mix(in_oklab,var(--eng)_60%,black)_45%,var(--eng-ink)_100%)] text-eng-foreground"
           : "border-border bg-card",
       )}
     >

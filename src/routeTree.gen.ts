@@ -26,6 +26,7 @@ import { Route as AdminFipeRouteImport } from './routes/admin.fipe'
 import { Route as AdminFlowsRouteImport } from './routes/admin.flows'
 import { Route as AdminTiposRouteImport } from './routes/admin.tipos'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
+import { Route as AreaIndexRouteImport } from './routes/area.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -112,11 +113,16 @@ const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
   path: '/usuarios',
   getParentRoute: () => AdminRoute,
 } as any)
+const AreaIndexRoute = AreaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AreaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
-  '/area': typeof AreaRoute
+  '/area': typeof AreaRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -131,10 +137,10 @@ export interface FileRoutesByFullPath {
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
+  '/area/': typeof AreaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/area': typeof AreaRoute
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -149,12 +155,13 @@ export interface FileRoutesByTo {
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin': typeof AdminIndexRoute
+  '/area': typeof AreaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
-  '/area': typeof AreaRoute
+  '/area': typeof AreaRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -169,6 +176,7 @@ export interface FileRoutesById {
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/admin/': typeof AdminIndexRoute
+  '/area/': typeof AreaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -190,10 +198,10 @@ export interface FileRouteTypes {
     | '/admin/tipos'
     | '/admin/usuarios'
     | '/admin/'
+    | '/area/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/area'
     | '/dashboard'
     | '/pricing'
     | '/admin/analytics'
@@ -208,6 +216,7 @@ export interface FileRouteTypes {
     | '/admin/tipos'
     | '/admin/usuarios'
     | '/admin'
+    | '/area'
   id:
     | '__root__'
     | '/'
@@ -227,12 +236,13 @@ export interface FileRouteTypes {
     | '/admin/tipos'
     | '/admin/usuarios'
     | '/admin/'
+    | '/area/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
-  AreaRoute: typeof AreaRoute
+  AreaRoute: typeof AreaRouteWithChildren
   DashboardRoute: typeof DashboardRoute
   PricingRoute: typeof PricingRoute
 }
@@ -358,6 +368,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsuariosRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/area/': {
+      id: '/area/'
+      path: '/'
+      fullPath: '/area/'
+      preLoaderRoute: typeof AreaIndexRouteImport
+      parentRoute: typeof AreaRoute
+    }
   }
 }
 
@@ -393,10 +410,20 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface AreaRouteChildren {
+  AreaIndexRoute: typeof AreaIndexRoute
+}
+
+const AreaRouteChildren: AreaRouteChildren = {
+  AreaIndexRoute: AreaIndexRoute,
+}
+
+const AreaRouteWithChildren = AreaRoute._addFileChildren(AreaRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
-  AreaRoute: AreaRoute,
+  AreaRoute: AreaRouteWithChildren,
   DashboardRoute: DashboardRoute,
   PricingRoute: PricingRoute,
 }

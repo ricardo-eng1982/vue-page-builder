@@ -84,7 +84,16 @@
   --shadow-eng: var(--shadow-eng);
   --color-cream: var(--cream);
   --color-ink: var(--ink);
+  --color-nb-bg: var(--nb-bg);
+  --color-nb-ink: var(--nb-ink);
+  --color-nb-green: var(--nb-green);
+  --color-nb-lime: var(--nb-lime);
+  --color-nb-orange: var(--nb-orange);
+  --color-nb-blue: var(--nb-blue);
+  --color-nb-surface: var(--nb-surface);
   --font-display: "Outfit", "Inter", ui-sans-serif, sans-serif;
+  --font-brutal: "Space Grotesk", "Inter", ui-sans-serif, sans-serif;
+  --font-heavy: "Archivo Black", "Space Grotesk", ui-sans-serif, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 

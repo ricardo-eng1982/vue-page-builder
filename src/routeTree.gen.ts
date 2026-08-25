@@ -27,6 +27,7 @@ import { Route as AdminFlowsRouteImport } from './routes/admin.flows'
 import { Route as AdminTiposRouteImport } from './routes/admin.tipos'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as AreaIndexRouteImport } from './routes/area.index'
+import { Route as AreaCardsRouteImport } from './routes/area.cards'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -118,6 +119,11 @@ const AreaIndexRoute = AreaIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AreaRoute,
 } as any)
+const AreaCardsRoute = AreaCardsRouteImport.update({
+  id: '/cards',
+  path: '/cards',
+  getParentRoute: () => AreaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
+  '/area/cards': typeof AreaCardsRoute
   '/admin/': typeof AdminIndexRoute
   '/area/': typeof AreaIndexRoute
 }
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
+  '/area/cards': typeof AreaCardsRoute
   '/admin': typeof AdminIndexRoute
   '/area': typeof AreaIndexRoute
 }
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
+  '/area/cards': typeof AreaCardsRoute
   '/admin/': typeof AdminIndexRoute
   '/area/': typeof AreaIndexRoute
 }
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/admin/flows'
     | '/admin/tipos'
     | '/admin/usuarios'
+    | '/area/cards'
     | '/admin/'
     | '/area/'
   fileRoutesByTo: FileRoutesByTo
@@ -215,6 +225,7 @@ export interface FileRouteTypes {
     | '/admin/flows'
     | '/admin/tipos'
     | '/admin/usuarios'
+    | '/area/cards'
     | '/admin'
     | '/area'
   id:
@@ -235,6 +246,7 @@ export interface FileRouteTypes {
     | '/admin/flows'
     | '/admin/tipos'
     | '/admin/usuarios'
+    | '/area/cards'
     | '/admin/'
     | '/area/'
   fileRoutesById: FileRoutesById
@@ -375,6 +387,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AreaIndexRouteImport
       parentRoute: typeof AreaRoute
     }
+    '/area/cards': {
+      id: '/area/cards'
+      path: '/cards'
+      fullPath: '/area/cards'
+      preLoaderRoute: typeof AreaCardsRouteImport
+      parentRoute: typeof AreaRoute
+    }
   }
 }
 
@@ -411,10 +430,12 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface AreaRouteChildren {
+  AreaCardsRoute: typeof AreaCardsRoute
   AreaIndexRoute: typeof AreaIndexRoute
 }
 
 const AreaRouteChildren: AreaRouteChildren = {
+  AreaCardsRoute: AreaCardsRoute,
   AreaIndexRoute: AreaIndexRoute,
 }
 

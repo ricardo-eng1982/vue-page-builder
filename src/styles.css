@@ -84,7 +84,16 @@
   --shadow-eng: var(--shadow-eng);
   --color-cream: var(--cream);
   --color-ink: var(--ink);
+  --color-nb-bg: var(--nb-bg);
+  --color-nb-ink: var(--nb-ink);
+  --color-nb-green: var(--nb-green);
+  --color-nb-lime: var(--nb-lime);
+  --color-nb-orange: var(--nb-orange);
+  --color-nb-blue: var(--nb-blue);
+  --color-nb-surface: var(--nb-surface);
   --font-display: "Outfit", "Inter", ui-sans-serif, sans-serif;
+  --font-brutal: "Space Grotesk", "Inter", ui-sans-serif, sans-serif;
+  --font-heavy: "Archivo Black", "Space Grotesk", ui-sans-serif, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
@@ -150,6 +159,39 @@
   --cream: oklch(0.985 0.014 96);
   --ink: oklch(0.21 0.012 260);
   --shadow-eng: 0 1px 2px oklch(0.24 0.05 258 / 6%), 0 12px 32px -18px oklch(0.24 0.05 258 / 25%);
+
+  /* Neo-brutalismo — paleta do site Engrenei */
+  --nb-bg: oklch(0.947 0.006 130);        /* #EFF1EE */
+  --nb-surface: oklch(1 0 0);
+  --nb-ink: oklch(0.145 0 0);             /* quase preto para bordas/texto */
+  --nb-green: oklch(0.685 0.176 148);     /* #23BA5A */
+  --nb-lime: oklch(0.945 0.077 133);      /* #DCF7C5 */
+  --nb-orange: oklch(0.735 0.185 51);     /* #FF7F11 */
+  --nb-blue: oklch(0.62 0.19 255);        /* #3497F9 */
+}
+
+/* Utilitários neo-brutalistas */
+@utility nb-border {
+  border: 2px solid var(--nb-ink);
+}
+@utility nb-shadow {
+  box-shadow: 4px 4px 0 0 var(--nb-ink);
+}
+@utility nb-shadow-lg {
+  box-shadow: 7px 7px 0 0 var(--nb-ink);
+}
+@utility nb-press {
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--nb-ink);
+  }
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 0 var(--nb-ink);
+  }
 }
 
 

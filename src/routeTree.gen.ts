@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AreaRouteImport } from './routes/area'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
@@ -25,6 +26,10 @@ import { Route as AdminFipeRouteImport } from './routes/admin.fipe'
 import { Route as AdminFlowsRouteImport } from './routes/admin.flows'
 import { Route as AdminTiposRouteImport } from './routes/admin.tipos'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
+import { Route as AreaIndexRouteImport } from './routes/area.index'
+import { Route as AreaCardsRouteImport } from './routes/area.cards'
+import { Route as AreaConsultasRouteImport } from './routes/area.consultas'
+import { Route as AreaPerfilRouteImport } from './routes/area.perfil'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,6 +39,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AreaRoute = AreaRouteImport.update({
+  id: '/area',
+  path: '/area',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -106,10 +116,31 @@ const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
   path: '/usuarios',
   getParentRoute: () => AdminRoute,
 } as any)
+const AreaIndexRoute = AreaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AreaRoute,
+} as any)
+const AreaCardsRoute = AreaCardsRouteImport.update({
+  id: '/cards',
+  path: '/cards',
+  getParentRoute: () => AreaRoute,
+} as any)
+const AreaConsultasRoute = AreaConsultasRouteImport.update({
+  id: '/consultas',
+  path: '/consultas',
+  getParentRoute: () => AreaRoute,
+} as any)
+const AreaPerfilRoute = AreaPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AreaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/area': typeof AreaRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -123,7 +154,11 @@ export interface FileRoutesByFullPath {
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
+  '/area/cards': typeof AreaCardsRoute
+  '/area/consultas': typeof AreaConsultasRoute
+  '/area/perfil': typeof AreaPerfilRoute
   '/admin/': typeof AdminIndexRoute
+  '/area/': typeof AreaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -140,12 +175,17 @@ export interface FileRoutesByTo {
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
+  '/area/cards': typeof AreaCardsRoute
+  '/area/consultas': typeof AreaConsultasRoute
+  '/area/perfil': typeof AreaPerfilRoute
   '/admin': typeof AdminIndexRoute
+  '/area': typeof AreaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/area': typeof AreaRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -159,13 +199,18 @@ export interface FileRoutesById {
   '/admin/flows': typeof AdminFlowsRoute
   '/admin/tipos': typeof AdminTiposRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
+  '/area/cards': typeof AreaCardsRoute
+  '/area/consultas': typeof AreaConsultasRoute
+  '/area/perfil': typeof AreaPerfilRoute
   '/admin/': typeof AdminIndexRoute
+  '/area/': typeof AreaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
+    | '/area'
     | '/dashboard'
     | '/pricing'
     | '/admin/analytics'
@@ -179,7 +224,11 @@ export interface FileRouteTypes {
     | '/admin/flows'
     | '/admin/tipos'
     | '/admin/usuarios'
+    | '/area/cards'
+    | '/area/consultas'
+    | '/area/perfil'
     | '/admin/'
+    | '/area/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -196,11 +245,16 @@ export interface FileRouteTypes {
     | '/admin/flows'
     | '/admin/tipos'
     | '/admin/usuarios'
+    | '/area/cards'
+    | '/area/consultas'
+    | '/area/perfil'
     | '/admin'
+    | '/area'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/area'
     | '/dashboard'
     | '/pricing'
     | '/admin/analytics'
@@ -214,12 +268,17 @@ export interface FileRouteTypes {
     | '/admin/flows'
     | '/admin/tipos'
     | '/admin/usuarios'
+    | '/area/cards'
+    | '/area/consultas'
+    | '/area/perfil'
     | '/admin/'
+    | '/area/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AreaRoute: typeof AreaRouteWithChildren
   DashboardRoute: typeof DashboardRoute
   PricingRoute: typeof PricingRoute
 }
@@ -238,6 +297,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/area': {
+      id: '/area'
+      path: '/area'
+      fullPath: '/area'
+      preLoaderRoute: typeof AreaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -338,6 +404,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsuariosRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/area/': {
+      id: '/area/'
+      path: '/'
+      fullPath: '/area/'
+      preLoaderRoute: typeof AreaIndexRouteImport
+      parentRoute: typeof AreaRoute
+    }
+    '/area/cards': {
+      id: '/area/cards'
+      path: '/cards'
+      fullPath: '/area/cards'
+      preLoaderRoute: typeof AreaCardsRouteImport
+      parentRoute: typeof AreaRoute
+    }
+    '/area/consultas': {
+      id: '/area/consultas'
+      path: '/consultas'
+      fullPath: '/area/consultas'
+      preLoaderRoute: typeof AreaConsultasRouteImport
+      parentRoute: typeof AreaRoute
+    }
+    '/area/perfil': {
+      id: '/area/perfil'
+      path: '/perfil'
+      fullPath: '/area/perfil'
+      preLoaderRoute: typeof AreaPerfilRouteImport
+      parentRoute: typeof AreaRoute
+    }
   }
 }
 
@@ -373,9 +467,26 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface AreaRouteChildren {
+  AreaCardsRoute: typeof AreaCardsRoute
+  AreaConsultasRoute: typeof AreaConsultasRoute
+  AreaPerfilRoute: typeof AreaPerfilRoute
+  AreaIndexRoute: typeof AreaIndexRoute
+}
+
+const AreaRouteChildren: AreaRouteChildren = {
+  AreaCardsRoute: AreaCardsRoute,
+  AreaConsultasRoute: AreaConsultasRoute,
+  AreaPerfilRoute: AreaPerfilRoute,
+  AreaIndexRoute: AreaIndexRoute,
+}
+
+const AreaRouteWithChildren = AreaRoute._addFileChildren(AreaRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AreaRoute: AreaRouteWithChildren,
   DashboardRoute: DashboardRoute,
   PricingRoute: PricingRoute,
 }

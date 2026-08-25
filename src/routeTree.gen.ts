@@ -29,6 +29,7 @@ import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as AreaIndexRouteImport } from './routes/area.index'
 import { Route as AreaCardsRouteImport } from './routes/area.cards'
 import { Route as AreaConsultasRouteImport } from './routes/area.consultas'
+import { Route as AreaPerfilRouteImport } from './routes/area.perfil'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -130,6 +131,11 @@ const AreaConsultasRoute = AreaConsultasRouteImport.update({
   path: '/consultas',
   getParentRoute: () => AreaRoute,
 } as any)
+const AreaPerfilRoute = AreaPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AreaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -150,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/area/cards': typeof AreaCardsRoute
   '/area/consultas': typeof AreaConsultasRoute
+  '/area/perfil': typeof AreaPerfilRoute
   '/admin/': typeof AdminIndexRoute
   '/area/': typeof AreaIndexRoute
 }
@@ -170,6 +177,7 @@ export interface FileRoutesByTo {
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/area/cards': typeof AreaCardsRoute
   '/area/consultas': typeof AreaConsultasRoute
+  '/area/perfil': typeof AreaPerfilRoute
   '/admin': typeof AdminIndexRoute
   '/area': typeof AreaIndexRoute
 }
@@ -193,6 +201,7 @@ export interface FileRoutesById {
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/area/cards': typeof AreaCardsRoute
   '/area/consultas': typeof AreaConsultasRoute
+  '/area/perfil': typeof AreaPerfilRoute
   '/admin/': typeof AdminIndexRoute
   '/area/': typeof AreaIndexRoute
 }
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/admin/usuarios'
     | '/area/cards'
     | '/area/consultas'
+    | '/area/perfil'
     | '/admin/'
     | '/area/'
   fileRoutesByTo: FileRoutesByTo
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/admin/usuarios'
     | '/area/cards'
     | '/area/consultas'
+    | '/area/perfil'
     | '/admin'
     | '/area'
   id:
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/admin/usuarios'
     | '/area/cards'
     | '/area/consultas'
+    | '/area/perfil'
     | '/admin/'
     | '/area/'
   fileRoutesById: FileRoutesById
@@ -413,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AreaConsultasRouteImport
       parentRoute: typeof AreaRoute
     }
+    '/area/perfil': {
+      id: '/area/perfil'
+      path: '/perfil'
+      fullPath: '/area/perfil'
+      preLoaderRoute: typeof AreaPerfilRouteImport
+      parentRoute: typeof AreaRoute
+    }
   }
 }
 
@@ -451,12 +470,14 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 interface AreaRouteChildren {
   AreaCardsRoute: typeof AreaCardsRoute
   AreaConsultasRoute: typeof AreaConsultasRoute
+  AreaPerfilRoute: typeof AreaPerfilRoute
   AreaIndexRoute: typeof AreaIndexRoute
 }
 
 const AreaRouteChildren: AreaRouteChildren = {
   AreaCardsRoute: AreaCardsRoute,
   AreaConsultasRoute: AreaConsultasRoute,
+  AreaPerfilRoute: AreaPerfilRoute,
   AreaIndexRoute: AreaIndexRoute,
 }
 

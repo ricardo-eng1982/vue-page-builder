@@ -1,15 +1,18 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { CreditCard, FileSearch, Home, LogOut, User } from "lucide-react";
+import { CreditCard, FileSearch, Home, LogOut, User, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { NbSurface } from "./nb";
 
-const NAV = [
+type NavItem = { to: "/area" | "/area/cards" | "/area/consultas" | "/area/perfil"; label: string; icon: LucideIcon; exact?: boolean };
+
+const NAV: NavItem[] = [
   { to: "/area", label: "Home", icon: Home, exact: true },
   { to: "/area/cards", label: "Cards Gerados", icon: CreditCard },
   { to: "/area/consultas", label: "Consultas", icon: FileSearch },
   { to: "/area/perfil", label: "Perfil", icon: User },
-] as const;
+];
+
 
 export function UserShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });

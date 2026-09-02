@@ -91,6 +91,24 @@
   --color-nb-orange: var(--nb-orange);
   --color-nb-blue: var(--nb-blue);
   --color-nb-surface: var(--nb-surface);
+  /* Engrenei DS */
+  --color-ds-bg: var(--ds-bg);
+  --color-ds-surface: var(--ds-surface);
+  --color-ds-elevated: var(--ds-elevated);
+  --color-ds-ink: var(--ds-ink);
+  --color-ds-muted: var(--ds-muted);
+  --color-ds-line: var(--ds-line);
+  --color-ds-brand: var(--ds-brand);
+  --color-ds-brand-ink: var(--ds-brand-ink);
+  --color-ds-brand-soft: var(--ds-brand-soft);
+  --color-ds-warn: var(--ds-warn);
+  --color-ds-warn-soft: var(--ds-warn-soft);
+  --color-ds-danger: var(--ds-danger);
+  --color-ds-danger-soft: var(--ds-danger-soft);
+  --color-ds-info: var(--ds-info);
+  --color-ds-info-soft: var(--ds-info-soft);
+  --font-ds-display: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-ds-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", "Inter", ui-sans-serif, sans-serif;
   --font-brutal: "Space Grotesk", "Inter", ui-sans-serif, sans-serif;
   --font-heavy: "Archivo Black", "Space Grotesk", ui-sans-serif, sans-serif;
@@ -168,6 +186,50 @@
   --nb-lime: oklch(0.945 0.077 133);      /* #DCF7C5 */
   --nb-orange: oklch(0.735 0.185 51);     /* #FF7F11 */
   --nb-blue: oklch(0.62 0.19 255);        /* #3497F9 */
+
+  /* ===== Engrenei Design System ===== */
+  --ds-bg: oklch(0.962 0.006 130);          /* #EFF1EE */
+  --ds-surface: oklch(1 0 0);               /* #FFFFFF */
+  --ds-elevated: oklch(0.185 0.008 150);    /* superfícies escuras */
+  --ds-ink: oklch(0.185 0.004 260);         /* #111111 */
+  --ds-muted: oklch(0.55 0.008 260);
+  --ds-line: oklch(0.905 0.006 150);
+  --ds-brand: oklch(0.685 0.176 148);       /* #23BA5A */
+  --ds-brand-ink: oklch(0.44 0.12 150);
+  --ds-brand-soft: oklch(0.955 0.045 148);
+  --ds-warn: oklch(0.735 0.16 68);
+  --ds-warn-soft: oklch(0.96 0.05 80);
+  --ds-danger: oklch(0.6 0.2 25);
+  --ds-danger-soft: oklch(0.96 0.035 25);
+  --ds-info: oklch(0.62 0.13 250);
+  --ds-info-soft: oklch(0.955 0.03 250);
+  --ds-ring: 0 0 0 3px color-mix(in oklab, var(--ds-brand) 28%, transparent);
+  --ds-shadow-sm: 0 1px 2px oklch(0.185 0.004 260 / 6%);
+  --ds-shadow-md: 0 2px 4px oklch(0.185 0.004 260 / 5%), 0 12px 28px -18px oklch(0.185 0.004 260 / 30%);
+  --ds-shadow-lg: 0 24px 60px -28px oklch(0.185 0.004 260 / 35%);
+}
+
+/* Engrenei DS — utilitários */
+@utility ds-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-line);
+  border-radius: 20px;
+  box-shadow: var(--ds-shadow-sm);
+}
+@utility ds-elevate {
+  box-shadow: var(--ds-shadow-md);
+}
+@utility ds-focus {
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-ring);
+  }
+}
+@utility ds-canvas {
+  background:
+    radial-gradient(1100px 480px at 88% -12%, color-mix(in oklab, var(--ds-brand) 16%, transparent), transparent 62%),
+    radial-gradient(760px 420px at -6% 6%, color-mix(in oklab, var(--ds-brand) 7%, transparent), transparent 60%),
+    var(--ds-bg);
 }
 
 /* Utilitários neo-brutalistas */

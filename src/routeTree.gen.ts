@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AreaRouteImport } from './routes/area'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
@@ -30,6 +31,7 @@ import { Route as AreaIndexRouteImport } from './routes/area.index'
 import { Route as AreaCardsRouteImport } from './routes/area.cards'
 import { Route as AreaConsultasRouteImport } from './routes/area.consultas'
 import { Route as AreaPerfilRouteImport } from './routes/area.perfil'
+import { Route as EntrarTokenRouteImport } from './routes/entrar.token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -49,6 +51,11 @@ const AreaRoute = AreaRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntrarRoute = EntrarRouteImport.update({
+  id: '/entrar',
+  path: '/entrar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -136,12 +143,18 @@ const AreaPerfilRoute = AreaPerfilRouteImport.update({
   path: '/perfil',
   getParentRoute: () => AreaRoute,
 } as any)
+const EntrarTokenRoute = EntrarTokenRouteImport.update({
+  id: '/token',
+  path: '/token',
+  getParentRoute: () => EntrarRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/area': typeof AreaRouteWithChildren
   '/dashboard': typeof DashboardRoute
+  '/entrar': typeof EntrarRouteWithChildren
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
@@ -157,12 +170,14 @@ export interface FileRoutesByFullPath {
   '/area/cards': typeof AreaCardsRoute
   '/area/consultas': typeof AreaConsultasRoute
   '/area/perfil': typeof AreaPerfilRoute
+  '/entrar/token': typeof EntrarTokenRoute
   '/admin/': typeof AdminIndexRoute
   '/area/': typeof AreaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/entrar': typeof EntrarRouteWithChildren
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
@@ -178,6 +193,7 @@ export interface FileRoutesByTo {
   '/area/cards': typeof AreaCardsRoute
   '/area/consultas': typeof AreaConsultasRoute
   '/area/perfil': typeof AreaPerfilRoute
+  '/entrar/token': typeof EntrarTokenRoute
   '/admin': typeof AdminIndexRoute
   '/area': typeof AreaIndexRoute
 }
@@ -187,6 +203,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/area': typeof AreaRouteWithChildren
   '/dashboard': typeof DashboardRoute
+  '/entrar': typeof EntrarRouteWithChildren
   '/pricing': typeof PricingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/ativos': typeof AdminAtivosRoute
@@ -202,6 +219,7 @@ export interface FileRoutesById {
   '/area/cards': typeof AreaCardsRoute
   '/area/consultas': typeof AreaConsultasRoute
   '/area/perfil': typeof AreaPerfilRoute
+  '/entrar/token': typeof EntrarTokenRoute
   '/admin/': typeof AdminIndexRoute
   '/area/': typeof AreaIndexRoute
 }
@@ -212,6 +230,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/area'
     | '/dashboard'
+    | '/entrar'
     | '/pricing'
     | '/admin/analytics'
     | '/admin/ativos'
@@ -227,12 +246,14 @@ export interface FileRouteTypes {
     | '/area/cards'
     | '/area/consultas'
     | '/area/perfil'
+    | '/entrar/token'
     | '/admin/'
     | '/area/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/dashboard'
+    | '/entrar'
     | '/pricing'
     | '/admin/analytics'
     | '/admin/ativos'
@@ -248,6 +269,7 @@ export interface FileRouteTypes {
     | '/area/cards'
     | '/area/consultas'
     | '/area/perfil'
+    | '/entrar/token'
     | '/admin'
     | '/area'
   id:
@@ -256,6 +278,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/area'
     | '/dashboard'
+    | '/entrar'
     | '/pricing'
     | '/admin/analytics'
     | '/admin/ativos'
@@ -271,6 +294,7 @@ export interface FileRouteTypes {
     | '/area/cards'
     | '/area/consultas'
     | '/area/perfil'
+    | '/entrar/token'
     | '/admin/'
     | '/area/'
   fileRoutesById: FileRoutesById
@@ -280,6 +304,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   AreaRoute: typeof AreaRouteWithChildren
   DashboardRoute: typeof DashboardRoute
+  EntrarRoute: typeof EntrarRouteWithChildren
   PricingRoute: typeof PricingRoute
 }
 
@@ -311,6 +336,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entrar': {
+      id: '/entrar'
+      path: '/entrar'
+      fullPath: '/entrar'
+      preLoaderRoute: typeof EntrarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -432,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AreaPerfilRouteImport
       parentRoute: typeof AreaRoute
     }
+    '/entrar/token': {
+      id: '/entrar/token'
+      path: '/token'
+      fullPath: '/entrar/token'
+      preLoaderRoute: typeof EntrarTokenRouteImport
+      parentRoute: typeof EntrarRoute
+    }
   }
 }
 
@@ -483,11 +522,23 @@ const AreaRouteChildren: AreaRouteChildren = {
 
 const AreaRouteWithChildren = AreaRoute._addFileChildren(AreaRouteChildren)
 
+interface EntrarRouteChildren {
+  EntrarTokenRoute: typeof EntrarTokenRoute
+}
+
+const EntrarRouteChildren: EntrarRouteChildren = {
+  EntrarTokenRoute: EntrarTokenRoute,
+}
+
+const EntrarRouteWithChildren =
+  EntrarRoute._addFileChildren(EntrarRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   AreaRoute: AreaRouteWithChildren,
   DashboardRoute: DashboardRoute,
+  EntrarRoute: EntrarRouteWithChildren,
   PricingRoute: PricingRoute,
 }
 export const routeTree = rootRouteImport
